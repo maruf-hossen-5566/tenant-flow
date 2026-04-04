@@ -7,6 +7,7 @@ load_dotenv()
 
 
 class Settings(BaseSettings):
+    ALLOWED_ORIGINS: list[str] = os.getenv("ALLOWED_ORIGINS").split(",")
     DATABASE_URL: str = os.getenv("DATABASE_URL")
     TEST_DATABASE_URL: str = os.getenv("TEST_DATABASE_URL")
     DATABASE_PASSWORD: str = os.getenv("DATABASE_PASSWORD")

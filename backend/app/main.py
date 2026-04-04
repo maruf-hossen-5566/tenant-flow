@@ -1,3 +1,4 @@
+from app.core.config import settings
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
@@ -12,10 +13,7 @@ app.include_router(api_router, prefix="/api")
 Base.metadata.create_all(bind=engine)
 
 # CORS
-origins = [
-    "http://localhost:5173",
-    "http://localhost:4173",
-]
+origins = settings.ALLOWED_ORIGINS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -35,8 +33,10 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
         error_msg = f"{field}: {message}"
 
     return JSONResponse(
-        status_code=422, content={"detail": error_msg if error_msg else message},
+        status_code=422,
+        content={"detail": error_msg if error_msg else message},
     )
+
 
 # alembic revision --autogenerate -m "Initial migration"
 # alembic upgrade head
