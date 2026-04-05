@@ -112,14 +112,7 @@ def __add_member__(
         db.add_all(list(members) + list(invites))
         db.commit()
 
-        for invite in invites:
-            background_tasks.add_task(send_invitation_mail, invite)
-    except smtplib.SMTPException as e:
-        logger.error(f"Failed to send invitation email: {e}")
-        raise HTTPException(
-            status.HTTP_500_INTERNAL_SERVER_ERROR,
-            "Invitation email failed to send, please try again later",
-        )
+        background_tasks.add_task(send_invitation_mail, invites)
     except Exception as e:
         logger.error(f"Failed to add member to tenant <{tenant.id}>: {e}")
         raise HTTPException(
