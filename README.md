@@ -64,6 +64,8 @@ The primary focus of this project is backend architecture and system design.
 * **SQLAlchemy**
 * **JWT Auth** (python-jose, passlib)
 * **Pytest**
+* **Docker** (for database and optional backend containerization)
+* **pip** (dependency management inside Docker)
 
 ### Frontend
 
@@ -87,16 +89,14 @@ The primary focus of this project is backend architecture and system design.
 └── README.md                # Project documentation
 ```
 
-> The **backend** contains the main architecture and business logic of this project.
-
 ---
 
 ## ⚙️ Setup & Installation
 
 ### 1. Clone the repository
 
-```
-git clone <my-repo-url>
+```bash
+git clone <your-repo-url>
 cd <project-name>
 ```
 
@@ -106,16 +106,35 @@ cd <project-name>
 
 Create a `.env` file:
 
-```
+```env
 DATABASE_URL=postgresql://<user>:<password>@localhost:<port>/<db_name>
 SECRET_KEY=your_secret_key
 ```
 
 ---
 
-### 3. Run the backend
+### 3. Run PostgreSQL (Docker)
 
+Make sure Docker is running, then start the database:
+
+```bash
+docker compose up -d db
 ```
+
+---
+
+### 4. Install backend dependencies (pip)
+
+```bash
+cd backend
+pip install -r requirements.txt
+```
+
+---
+
+### 5. Run the backend
+
+```bash
 uvicorn app.main:app --reload
 ```
 
@@ -125,7 +144,7 @@ uvicorn app.main:app --reload
 
 After login, include the token in requests:
 
-```
+```http
 Authorization: Bearer <access_token>
 ```
 
@@ -133,10 +152,9 @@ Authorization: Bearer <access_token>
 
 ## 🧪 Running Tests
 
-```
+```bash
 pytest
 ```
-> Add `--disable-warnings` to disable warnings
 
 ---
 
@@ -155,3 +173,14 @@ Permissions are enforced at the backend level (e.g., only admins can manage memb
 * Separation of concerns (routes, services, schemas)
 * Dependency injection
 * Testable design
+
+---
+
+## 🚨 Notes
+
+* PostgreSQL runs via Docker
+* Backend uses **pip** for dependency management (inside Docker or locally)
+* Email/invite flows are not implemented; tests seed data directly
+* Focus is on backend logic and architecture
+
+---
