@@ -1,7 +1,7 @@
 import os
-from pydantic import Field
-from pydantic_settings import BaseSettings
+
 from dotenv import load_dotenv
+from pydantic_settings import BaseSettings
 
 load_dotenv()
 
@@ -21,6 +21,9 @@ class Settings(BaseSettings):
     REFRESH_TOKEN_EXPIRE_DAYS: int = os.getenv("REFRESH_TOKEN_EXPIRE_DAYS")
     EMAIL_ADDRESS: str = os.getenv("EMAIL_ADDRESS")
     EMAIL_PASSWORD: str = os.getenv("EMAIL_PASSWORD")
+    RESEND_API_KEY: str = os.getenv("RESEND_API_KEY")
+    RESEND_NAME: str = os.getenv("RESEND_NAME")
+    RESEND_EMAIL: str = os.getenv("RESEND_EMAIL")
 
     class Config:
         env_file = ".env"

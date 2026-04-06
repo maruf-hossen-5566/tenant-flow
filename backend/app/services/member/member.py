@@ -11,7 +11,8 @@ from app.models.membership import Membership, MembershipRole
 from app.models.tenant import Tenant
 from app.models.user import User
 from app.schemas.membership import MemberCreate, MemberUpdate
-from app.utils.mails import send_invitation_mail
+from app.utils.mails import send_invitation_mail, send_invitation_mail_with_resend
+
 
 logger = setup_logger(__name__)
 
@@ -112,7 +113,8 @@ def __add_member__(
         db.add_all(list(members) + list(invites))
         db.commit()
 
-        background_tasks.add_task(send_invitation_mail, invites)
+        # background_tasks.add_task(send_invitation_mail, invites)
+        background_tasks.add_task(send_invitation_mail_with_resend, invites)
     except Exception as e:
         logger.error(f"Failed to add member to tenant <{tenant.id}>: {e}")
         raise HTTPException(

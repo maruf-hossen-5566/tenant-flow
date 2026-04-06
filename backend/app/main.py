@@ -1,14 +1,14 @@
-from app.core.config import settings
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app.api.router import api_router
+from app.core.config import settings
 from app.core.db import Base, engine
 
 app = FastAPI()
-app.include_router(api_router, prefix="/api")
+app.include_router(api_router)
 
 Base.metadata.create_all(bind=engine)
 
@@ -37,6 +37,7 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
         content={"detail": error_msg if error_msg else message},
     )
 
+# Alembic Migration Command, Which I can't remember ;(
 
 # alembic revision --autogenerate -m "Initial migration"
 # alembic upgrade head

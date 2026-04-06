@@ -131,6 +131,5 @@ def __refresh_token__(
             status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Something went wrong, please try again later",
         )
-    print("-" * 100)
 
     return {"tokens": tokens}
