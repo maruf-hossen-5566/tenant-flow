@@ -36,8 +36,3 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
         status_code=422,
         content={"detail": error_msg if error_msg else message},
     )
-
-# Alembic Migration Command, Which I can't remember ;(
-
-# alembic revision --autogenerate -m "Initial migration"
-# alembic upgrade head

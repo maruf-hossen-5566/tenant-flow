@@ -70,26 +70,6 @@ def __login_account__(
     return {"tokens": tokens, "user": UserResponse.model_validate(user)}
 
 
-# def __refresh_token__(
-#     user: User,
-#     db: Session,
-# ):
-#     logger.info(f"Attempt refresh token for user <{user.email}>")
-#     try:
-#         tokens = create_tokens({"sub": str(user.id)})
-#     except Exception as e:
-#         logger.error(
-#             f"Failed to create auth tokens for user <{user.email}>: {e}",
-#         )
-#         raise HTTPException(
-#             status.HTTP_500_INTERNAL_SERVER_ERROR,
-#             "Failed to refresh token, please try again later",
-#         )
-#
-#     logger.info(f"User <{user.email}> logged in successfully")
-#     return {"tokens": tokens, "user": UserResponse.model_validate(user)}
-
-
 def __refresh_token__(
     token: RefreshToken,
     db: Session,
