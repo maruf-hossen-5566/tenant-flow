@@ -1,14 +1,9 @@
 from logging.config import fileConfig
 
+from alembic import context
 from sqlalchemy import engine_from_config, pool
 
-from alembic import context
-from app.core.db import Base
-from app.models.invitation import *
-from app.models.membership import *
-from app.models.project import *
-from app.models.task import *
-from app.models.tenant import *
+from app.core.config import settings
 from app.models.user import *
 
 # this is the Alembic Config object, which provides
@@ -26,11 +21,14 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.metadata
 target_metadata = Base.metadata
 
-
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
+
+db_url = settings.DATABASE_LOCAL_URL
+if db_url:
+    config.set_main_option("sqlalchemy", db_url)
 
 
 def run_migrations_offline() -> None:

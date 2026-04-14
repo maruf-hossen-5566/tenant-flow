@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     FRONTEND_URL: str = os.getenv("FRONTEND_URL")
     ALLOWED_ORIGINS: str = os.getenv("ALLOWED_ORIGINS").split(",")
     DATABASE_URL: str = os.getenv("DATABASE_URL")
+    DATABASE_LOCAL_URL: str = os.getenv("DATABASE_LOCAL_URL")
     TEST_DATABASE_URL: str = os.getenv("TEST_DATABASE_URL")
     DATABASE_PASSWORD: str = os.getenv("DATABASE_PASSWORD")
     DATABASE_USER: str = os.getenv("DATABASE_USER")
