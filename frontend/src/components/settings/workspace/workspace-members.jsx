@@ -102,7 +102,7 @@ const WorkspaceMembers = () => {
 
             if (currentMember?.id === mId) {
                 clearWorkspaceStore();
-                navigate("./workspaces");
+                navigate("/workspaces");
             }
 
             toast.success("Member removed successfully");
