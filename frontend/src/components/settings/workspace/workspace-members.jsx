@@ -99,7 +99,6 @@ const WorkspaceMembers = () => {
                 newParams.set("skip", String(0));
                 return newParams;
             });
-            window.location.reload();
 
             if (currentMember?.id === mId) {
                 clearWorkspaceStore();
