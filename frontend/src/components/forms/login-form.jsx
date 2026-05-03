@@ -1,22 +1,27 @@
-import {cn} from "@/lib/utils.js"
-import {Button} from "@/components/ui/button.jsx"
+import { cn } from "@/lib/utils.js";
+import { Button } from "@/components/ui/button.jsx";
 import {
-    Field, FieldDescription, FieldGroup, FieldLabel, FieldSeparator,
-} from "@/components/ui/field.jsx"
-import {Input} from "@/components/ui/input.jsx"
-import {Link} from "react-router-dom";
-import {useFormStore} from "@/stores/form-store.js";
-import {useGlobalStore} from "@/stores/global-store.js";
+    Field,
+    FieldDescription,
+    FieldGroup,
+    FieldLabel,
+    FieldSeparator,
+} from "@/components/ui/field.jsx";
+import { Input } from "@/components/ui/input.jsx";
+import { Link } from "react-router-dom";
+import { useFormStore } from "@/stores/form-store.js";
 
-export function LoginForm({className, ...props}) {
-    const loginForm = useFormStore(state => state.loginForm)
-    const changeLoginForm = useFormStore(state => state.changeLoginForm)
-    const isLoading = useGlobalStore(state => state.isLoading)
+export function LoginForm({ className, ...props }) {
+    const loginForm = useFormStore((state) => state.loginForm);
+    const changeLoginForm = useFormStore((state) => state.changeLoginForm);
 
-    return (<form className={cn("flex flex-col gap-6", className)} {...props}>
+    return (
+        <form className={cn("flex flex-col gap-6", className)} {...props}>
             <FieldGroup>
                 <div className="flex flex-col items-center gap-1 text-center">
-                    <h1 className="text-2xl font-bold">Login to your account</h1>
+                    <h1 className="text-2xl font-bold">
+                        Login to your account
+                    </h1>
                     <p className="text-muted-foreground text-sm text-balance">
                         Enter your email below to login to your account
                     </p>
@@ -30,7 +35,9 @@ export function LoginForm({className, ...props}) {
                         autoFocus
                         required
                         value={loginForm.username || ""}
-                        onChange={(e) => changeLoginForm("username", e.target.value)}
+                        onChange={(e) =>
+                            changeLoginForm("username", e.target.value)
+                        }
                     />
                 </Field>
                 <Field>
@@ -42,11 +49,19 @@ export function LoginForm({className, ...props}) {
                         type="password"
                         required
                         value={loginForm.password || ""}
-                        onChange={(e) => changeLoginForm("password", e.target.value)}
+                        onChange={(e) =>
+                            changeLoginForm("password", e.target.value)
+                        }
                     />
                 </Field>
                 <Field>
-                    <Button type="submit" disabled={isLoading}>Login</Button>
+                    <Button
+                        type="submit"
+                        disabled={props.isLoading}
+                        className="disabled:opacity-50"
+                    >
+                        Login
+                    </Button>
                 </Field>
                 <FieldSeparator>Or</FieldSeparator>
                 <Field>
@@ -61,5 +76,6 @@ export function LoginForm({className, ...props}) {
                     </FieldDescription>
                 </Field>
             </FieldGroup>
-        </form>);
+        </form>
+    );
 }

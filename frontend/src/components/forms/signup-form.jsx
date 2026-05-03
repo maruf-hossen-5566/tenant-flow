@@ -1,19 +1,19 @@
-import {cn} from "@/lib/utils.js"
-import {Button} from "@/components/ui/button.jsx"
+import { cn } from "@/lib/utils.js";
+import { Button } from "@/components/ui/button.jsx";
 import {
     Field,
     FieldDescription,
     FieldGroup,
     FieldLabel,
     FieldSeparator,
-} from "@/components/ui/field.jsx"
-import {Input} from "@/components/ui/input.jsx"
-import {Link} from "react-router-dom";
-import {useFormStore} from "@/stores/form-store.js";
+} from "@/components/ui/field.jsx";
+import { Input } from "@/components/ui/input.jsx";
+import { Link } from "react-router-dom";
+import { useFormStore } from "@/stores/form-store.js";
 
-export function SignupForm({className, ...props}) {
-    const signForm = useFormStore(state => state.signupForm)
-    const changeSignForm = useFormStore(state => state.changeSignupForm)
+export function SignupForm({ className, ...props }) {
+    const signForm = useFormStore((state) => state.signupForm);
+    const changeSignForm = useFormStore((state) => state.changeSignupForm);
 
     return (
         <form className={cn("flex flex-col gap-6", className)} {...props}>
@@ -44,7 +44,9 @@ export function SignupForm({className, ...props}) {
                         placeholder="m@example.com"
                         required
                         value={signForm.email || ""}
-                        onChange={(e) => changeSignForm("email", e.target.value)}
+                        onChange={(e) =>
+                            changeSignForm("email", e.target.value)
+                        }
                     />
                 </Field>
                 <Field>
@@ -54,24 +56,36 @@ export function SignupForm({className, ...props}) {
                         type="password"
                         required
                         value={signForm.password || ""}
-                        onChange={(e) => changeSignForm("password", e.target.value)}
+                        onChange={(e) =>
+                            changeSignForm("password", e.target.value)
+                        }
                     />
                     <FieldDescription className="text-xs">
                         Must be at least 8 characters long.
                     </FieldDescription>
                 </Field>
                 <Field>
-                    <FieldLabel htmlFor="confirm-password">Confirm Password</FieldLabel>
+                    <FieldLabel htmlFor="confirm-password">
+                        Confirm Password
+                    </FieldLabel>
                     <Input
                         id="confirm-password"
                         type="password"
                         required
                         value={signForm.confPassword || ""}
-                        onChange={(e) => changeSignForm("confPassword", e.target.value)}
+                        onChange={(e) =>
+                            changeSignForm("confPassword", e.target.value)
+                        }
                     />
                 </Field>
                 <Field>
-                    <Button type="submit">Create Account</Button>
+                    <Button
+                        type="submit"
+                        disabled={props.isLoading}
+                        className="disabled:opacity-50"
+                    >
+                        Create Account
+                    </Button>
                 </Field>
                 <FieldSeparator>Or</FieldSeparator>
                 <Field>
