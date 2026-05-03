@@ -56,9 +56,7 @@ const WorkspaceMembers = () => {
     const setActiveMembers = useWorkspaceStore(
         (state) => state.setActiveMembers,
     );
-    const clearWorkspaceStore = useWorkspaceStore(
-        (state) => state.clearWorkspaceStore,
-    );
+    const clearWorkspaceStore = useWorkspaceStore((state) => state.clearStore);
     const [canCrud, setCanCrud] = useState(false);
     const [searchParams, setSearchParams] = useSearchParams();
     const searchQuery = searchParams.get("query") || "";
