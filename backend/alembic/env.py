@@ -26,7 +26,7 @@ target_metadata = Base.metadata
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
-db_url = settings.DATABASE_LOCAL_URL
+db_url = settings.DATABASE_URL
 if db_url:
     config.set_main_option("sqlalchemy", db_url)
 

@@ -23,7 +23,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
 
 
 def get_db():
-    """Create a database session."""
+    """Create and close a database session."""
     db = SessionLocal()
     try:
         yield db
