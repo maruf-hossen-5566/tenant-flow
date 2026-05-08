@@ -65,6 +65,6 @@ def send_invitation_mail_with_resend(invitations: list[Invitation]):
         }
         try:
             email: resend.Emails.SendResponse = resend.Emails.send(params)
-            logger.info(f"Sent invitation email<{email}>")
+            logger.info(f"Sent invitation to <{invite.email}>")
         except ResendError as e:
             logger.error(f"Failed to send invitation email <{invite.email}>: {e}")
