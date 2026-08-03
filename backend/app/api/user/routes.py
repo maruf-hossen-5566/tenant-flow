@@ -18,7 +18,7 @@ logger = setup_logger(__name__)
 router = APIRouter()
 
 
-@router.get("/", response_model=list[UserResponse])
+# @router.get("/", response_model=list[UserResponse])
 def get_all_users(db: Session = Depends(get_db)):
 	"""
 	Get all users data
