@@ -180,7 +180,6 @@ Permissions are enforced at the backend level (e.g., only admins can manage memb
 
 * PostgreSQL runs via Docker
 * Backend uses **pip** for dependency management (inside Docker or locally)
-* Email/invite flows are not implemented; tests seed data directly
 * Focus is on backend logic and architecture
 
 ---
