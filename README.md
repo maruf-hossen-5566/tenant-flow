@@ -65,7 +65,7 @@ The primary focus of this project is backend architecture and system design.
 * **JWT Auth** (python-jose, passlib)
 * **Pytest**
 * **Docker** (for database and optional backend containerization)
-* **pip** (dependency management inside Docker)
+* **pip** / **uv** (dependency management)
 
 ### Frontend
 
@@ -179,7 +179,7 @@ Permissions are enforced at the backend level (e.g., only admins can manage memb
 ## 🚨 Notes
 
 * PostgreSQL runs via Docker
-* Backend uses **pip** for dependency management (inside Docker or locally)
+* Backend uses **pip** for dependency management (inside Docker)
 * Focus is on backend logic and architecture
 
 ---
